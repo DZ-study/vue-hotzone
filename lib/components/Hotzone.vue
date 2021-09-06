@@ -14,6 +14,7 @@
         :key="index"
         :index="index"
         :setting="zone"
+        :zoneStyle="zoneStyle"
         @delItem="removeItem($event)"
         @changeInfo="changeInfo($event)"
       ></zone>
@@ -22,14 +23,15 @@
 </template>
 
 <script>
-import Zone from './Zone'
+import Zone from './Zone.vue'
 import addItem from '../directives/addItem'
 
 export default {
   name: 'HotZone',
   data () {
     return {
-      zones: []
+      zones: [],
+      mouseStatus: ''
     }
   },
   props: {
@@ -43,11 +45,25 @@ export default {
     },
     max: {
       type: Number
+    },
+    zoneStyle: {
+      type: Object,
+      default: () => {}
     }
   },
   mounted () {
     this.zones = this.zonesInit.concat()
   },
+
+  watch: {
+    'zonesInit.length': {
+      handler(newVal) {
+        const latestZone = this.zonesInit[newVal - 1]
+        latestZone.addType === 2 && this.zones.push(this.zonesInit[newVal - 1])
+      }
+    }
+  },
+
   methods: {
     changeInfo (res) {
       let { info, index } = res

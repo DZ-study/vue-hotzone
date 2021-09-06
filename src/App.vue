@@ -7,17 +7,12 @@
     <hotzone
       :image="image"
       :zonesInit="zones"
+      :zoneStyle="{ background: 'rgb(0,0,0)'}"
       @add="handleAdd"
       @remove="handleRemove"
       @change="handleChange"
     ></hotzone>
-    <input
-      type="text"
-      v-for="(zone, index) in zones"
-      :key="index"
-      v-model="zone.url"
-      :placeholder="`Area ${index + 1} url`"
-    >
+    <button @click="handleAddZone">添加热区</button>
     <h2>Try click your areas</h2>
     <h2>👇</h2>
     <div class="wrap">
@@ -45,20 +40,30 @@ export default {
   name: 'app',
   data: function () {
     return {
-      image: 'https://haitao.nos.netease.com/EbrC2L4UuXFI1CPmWall%20o207T1705221905_1920_1080.jpg',
+      image: 'https://img95.699pic.com/photo/50046/5562.jpg_wh300.jpg',
       zones: [{
-        heightPer: 0.4374,
-        leftPer: 0.1153,
-        topPer: 0.238,
-        widthPer: 0.2827,
-        url: 'https://github.com/OrangeXC'
+        heightPer: 0.2,
+        leftPer: 0,
+        topPer: 0,
+        widthPer: 0.2,
+        url: '',
+        // 添加方式：1-绘制 | 2-点击按钮
+        addType: 1
       }]
     }
   },
   methods: {
     handleAdd (zone) {
-      zone.url = this.zones.length ? '' : 'https://github.com/OrangeXC'
-
+      this.zones.push(zone)
+    },
+    handleAddZone() {
+      const zone = {
+        heightPer: 0.2,
+        leftPer: 0,
+        topPer: 0,
+        widthPer: 0.2,
+        addType: 2
+      }
       this.zones.push(zone)
     },
     handleRemove (index) {
@@ -66,7 +71,7 @@ export default {
     },
     handleChange () {
       // eslint-disable-next-line
-      console.log('Zones data updated')
+      // console.log('Zones data updated')
     },
     getZoneStyle (val) {
       return `${(val || 0) * 100}%`
@@ -110,23 +115,10 @@ export default {
   border: 2px dashed red;
 }
 
-input {
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 20px;
-  padding: 10px;
 
-  background: #fff;
-  border: 1px solid #ccc;
-  outline: none;
-
-  color: #555;
-
-  transition: all 0.30s ease-in-out;
-}
 
 input:focus {
-  box-shadow: 0 0 5px #43D1AF;
-  border: 1px solid #43D1AF;
+  /* box-shadow: 0 0 5px #43D1AF; */
+  border: 1px solid #409eff;
 }
 </style>
