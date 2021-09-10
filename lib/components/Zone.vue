@@ -18,6 +18,7 @@
         title="删除该热区"
         v-show="!hideZone"
         class="hz-u-close hz-icon hz-icon-trash"
+        :class="`${index + 1}`"
         @click.stop="delItem(index)"
       ></li>
       <li class="hz-u-edit-button"><span @click="isEditUrl=true">{{ url ? '修改链接' : '添加链接' }}</span></li>
@@ -93,7 +94,6 @@ export default {
       this.hideZone = isHide
     },
     changeInfo (info = {}) {
-      console.log('changeInfo...');
       const { index } = this
       this.$emit('changeInfo', {
         info,

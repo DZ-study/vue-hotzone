@@ -1,6 +1,6 @@
 {
   "name": "vue-hotzone-vue3",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "private": false,
   "main": "lib/index.js",
   "scripts": {

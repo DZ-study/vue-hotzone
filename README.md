@@ -26,21 +26,21 @@ yarn add vue-hotzone
 
 ```js
 // Use in component
-import hotzone from 'vue-hotzone'
+import hotzone from "vue-hotzone";
 
 export default {
   components: {
-    hotzone
-  }
-}
+    hotzone,
+  },
+};
 
 // Use in global
-import hotzone from 'vue-hotzone'
+import hotzone from "vue-hotzone";
 
-Vue.component(hotzone.name, hotzone)
+Vue.component(hotzone.name, hotzone);
 
 // or
-Vue.use(hotzone)
+Vue.use(hotzone);
 ```
 
 ```html
@@ -50,23 +50,24 @@ Vue.use(hotzone)
 ## Options
 
 ### Attributes
+
 You can set them to your data function
 
 | Attribute | Type   | Description                      | Keys                                       |
-|:----------|:-------|:---------------------------------|:-------------------------------------------|
+| :-------- | :----- | :------------------------------- | :----------------------------------------- |
 | image     | String | image of hotzone(required: true) |                                            |
 | max       | Number | max number of zones              |                                            |
 | zonesInit | Array  | init zones                       | item(heightPer, leftPer, topPer, widthPer) |
 
 ### Events
 
-| Event Name | Description                                                              | Parameters                      |
-|:-----------|:-------------------------------------------------------------------------|:--------------------------------|
-| change     | triggers when the zones changes                                          | the array of the zones          |
-| add        | triggers when the zone add                                               | the add zone item               |
-| remove     | triggers when the zone remove                                            | the index of the remove zone    |
-| overRange  | triggers when zones number > max                                         | the index of the overRange zone |
-| erase      | triggers when add zone overRange or smaller than the minimum area(48*48) | the index of the erase zone     |
+| Event Name | Description                                                               | Parameters                      |
+| :--------- | :------------------------------------------------------------------------ | :------------------------------ |
+| change     | triggers when the zones changes                                           | the array of the zones          |
+| add        | triggers when the zone add                                                | the add zone item               |
+| remove     | triggers when the zone remove                                             | the index of the remove zone    |
+| overRange  | triggers when zones number > max                                          | the index of the overRange zone |
+| erase      | triggers when add zone overRange or smaller than the minimum area(48\*48) | the index of the erase zone     |
 
 ## Develop
 

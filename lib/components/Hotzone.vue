@@ -30,8 +30,7 @@ export default {
   name: 'HotZone',
   data () {
     return {
-      zones: [],
-      mouseStatus: ''
+      zones: []
     }
   },
   props: {
@@ -55,19 +54,9 @@ export default {
     this.zones = this.zonesInit.concat()
   },
 
-  watch: {
-    'zonesInit.length': {
-      handler(newVal) {
-        const latestZone = this.zonesInit[newVal - 1]
-        latestZone.addType === 2 && this.zones.push(this.zonesInit[newVal - 1])
-      }
-    }
-  },
-
   methods: {
     changeInfo (res) {
       let { info, index } = res
-
       this.changeItem(info, index)
     },
     addItem (setting) {
@@ -91,6 +80,7 @@ export default {
       this.$emit('overRange', index)
     },
     removeItem (index = this.zones.length - 1) {
+      console.log('removeItem: ', index)
       this.zones.splice(index, 1)
       this.hasChange()
       this.$emit('remove', index)
@@ -101,6 +91,9 @@ export default {
     },
     hasChange () {
       this.$emit('change', this.zones)
+    },
+    onClear() {
+      this.zones.length = 0
     }
   },
   directives: {
